@@ -11,9 +11,14 @@ import {
   Building2, 
   CalendarDays, 
   Heart, 
-  MessageSquare
+  MessageSquare,
+  Search,
+  Filter,
+  GraduationCap,
+  Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '../theme/ThemeToggle';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -45,7 +50,7 @@ export default function Navbar() {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      scrolled ? "glass py-3 shadow-sm" : "bg-transparent py-5"
+      scrolled ? "dark:glass-dark glass py-3 shadow-sm" : "bg-transparent py-5"
     )}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
@@ -55,7 +60,8 @@ export default function Navbar() {
               <span className="text-sm py-0.5 px-2 bg-secondary rounded-full">Connect</span>
             </Link>
           </div>
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden items-center gap-4">
+            <ThemeToggle />
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
@@ -85,7 +91,14 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-3">
+            <Button variant="outline" size="sm" className="gap-1.5" asChild>
+              <Link to="/directory">
+                <Search className="h-4 w-4" />
+                <span>Find Alumni</span>
+              </Link>
+            </Button>
+            <ThemeToggle />
             <Button variant="outline" size="sm" className="transition-all duration-300" asChild>
               <Link to="/login">Log in</Link>
             </Button>
@@ -133,6 +146,14 @@ export default function Navbar() {
                       {item.name}
                     </Link>
                   ))}
+                  <Link
+                    to="/directory" 
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium transition-all duration-300 no-underline text-foreground hover:bg-secondary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Search className="h-4 w-4" />
+                    <span>Find Alumni</span>
+                  </Link>
                 </div>
                 <div className="py-6 space-y-3">
                   <Button variant="outline" className="w-full justify-center" asChild>
