@@ -1,3 +1,4 @@
+
 import Layout from "@/components/layout/Layout";
 import AlumniFinder from "@/components/directory/AlumniFinder";
 import { motion } from "framer-motion";
@@ -26,18 +27,6 @@ export default function Directory() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <AlumniFinder />
-        </motion.div>
-
-        {/* Alumni listing will be added here in a future implementation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-center py-16"
-        >
-          <p className="text-muted-foreground">
-            Select a college and apply filters to see alumni profiles
-          </p>
         </motion.div>
       </div>
     </Layout>
