@@ -1,6 +1,82 @@
-
 // This file contains mock data for colleges and alumni profiles for development purposes
 
+// Types for our data structures
+export interface College {
+  id: number;
+  name: string;
+  logo: string;
+  coverPhoto: string;
+  location: string;
+  founded: number;
+  type: string;
+  website: string;
+  email: string;
+  description: string;
+  rankings: Array<{
+    name: string;
+    rank: string;
+    year: number;
+  }>;
+  programs: Array<{
+    id: number;
+    name: string;
+    type: string;
+    duration: string;
+  }>;
+  stats: {
+    students: number;
+    faculty: number;
+    alumniCount: number;
+    internationalStudents: string;
+    acceptanceRate: string;
+  };
+}
+
+export interface Education {
+  id: number;
+  degree: string;
+  institution: string;
+  gradYear: number;
+}
+
+export interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  link: string;
+}
+
+export interface Alumni {
+  id: number;
+  name: string;
+  avatar: string;
+  coverPhoto: string;
+  graduationYear: number;
+  degree: string;
+  collegeId: number;
+  collegeName: string;
+  company: string;
+  position: string;
+  location: string;
+  email: string;
+  linkedin: string;
+  bio: string;
+  skills: string[];
+  experiences: Experience[];
+  education: Education[];
+  projects: Project[];
+}
+
+// Original data
 export const collegesData = [
   {
     id: 1,
@@ -2183,4 +2259,8 @@ export const alumniData = [
     ]
   }
 ];
+
+// Export the data with the names expected by AlumniFinder
+export const mockColleges = collegesData;
+export const mockAlumni = alumniData;
 

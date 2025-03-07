@@ -1,0 +1,314 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com", 
+      "password": "hashedpassword123",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,1",
+      "role": "student",
+      "collegeId": 1,
+      "graduationYear": 2024,
+      "major": "Computer Science",
+      "skills": ["Python", "Java", "Web Development"],
+      "interests": ["AI/ML", "Web Development", "Cloud Computing"],
+      "bio": "Computer Science student passionate about AI and web development.",
+      "linkedin": "https://linkedin.com/in/johndoe",
+      "github": "https://github.com/johndoe",
+      "createdAt": "2024-03-15T10:00:00Z",
+      "updatedAt": "2024-03-15T10:00:00Z",
+      "lastLoginAt": "2024-03-15T10:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": false
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "hashedpassword456",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,1",
+      "role": "student",
+      "collegeId": 2,
+      "graduationYear": 2025,
+      "major": "Data Science",
+      "skills": ["R", "Python", "Machine Learning"],
+      "interests": ["Data Analytics", "Statistics", "Big Data"],
+      "bio": "Data Science student with a passion for statistical analysis.",
+      "linkedin": "https://linkedin.com/in/janesmith",
+      "github": "https://github.com/janesmith",
+      "createdAt": "2024-03-15T11:00:00Z",
+      "updatedAt": "2024-03-15T11:00:00Z",
+      "lastLoginAt": "2024-03-15T11:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": false
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": true
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Michael Chen",
+      "email": "michael.chen@example.com",
+      "password": "hashedpassword789",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,2",
+      "role": "alumni",
+      "collegeId": 3,
+      "graduationYear": 2022,
+      "major": "Electrical Engineering",
+      "skills": ["Circuit Design", "MATLAB", "Arduino"],
+      "interests": ["Robotics", "IoT", "Embedded Systems"],
+      "bio": "Electrical engineer working on innovative IoT solutions.",
+      "linkedin": "https://linkedin.com/in/michaelchen",
+      "github": "https://github.com/michaelchen",
+      "createdAt": "2024-03-15T12:00:00Z",
+      "updatedAt": "2024-03-15T12:00:00Z",
+      "lastLoginAt": "2024-03-15T12:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": false,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": false
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@example.com",
+      "password": "hashedpassword101",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,2",
+      "role": "student",
+      "collegeId": 1,
+      "graduationYear": 2024,
+      "major": "Business Administration",
+      "skills": ["Marketing", "Project Management", "Data Analysis"],
+      "interests": ["Digital Marketing", "Entrepreneurship", "Finance"],
+      "bio": "Business student focusing on digital transformation strategies.",
+      "linkedin": "https://linkedin.com/in/sarahjohnson",
+      "github": "https://github.com/sarahjohnson",
+      "createdAt": "2024-03-15T13:00:00Z",
+      "updatedAt": "2024-03-15T13:00:00Z",
+      "lastLoginAt": "2024-03-15T13:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": true
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "David Kim",
+      "email": "david.kim@example.com",
+      "password": "hashedpassword202",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,3",
+      "role": "alumni",
+      "collegeId": 2,
+      "graduationYear": 2021,
+      "major": "Computer Engineering",
+      "skills": ["C++", "FPGA", "System Architecture"],
+      "interests": ["Hardware Design", "Computer Architecture", "Digital Systems"],
+      "bio": "Computer engineer specializing in hardware design and optimization.",
+      "linkedin": "https://linkedin.com/in/davidkim",
+      "github": "https://github.com/davidkim",
+      "createdAt": "2024-03-15T14:00:00Z",
+      "updatedAt": "2024-03-15T14:00:00Z",
+      "lastLoginAt": "2024-03-15T14:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": false
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": false
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "Emily Davis",
+      "email": "emily.davis@example.com",
+      "password": "hashedpassword303",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,3",
+      "role": "student",
+      "collegeId": 3,
+      "graduationYear": 2025,
+      "major": "Mechanical Engineering",
+      "skills": ["CAD", "3D Printing", "Thermal Analysis"],
+      "interests": ["Sustainable Design", "Aerospace", "Manufacturing"],
+      "bio": "Mechanical engineering student passionate about sustainable design.",
+      "linkedin": "https://linkedin.com/in/emilydavis",
+      "github": "https://github.com/emilydavis",
+      "createdAt": "2024-03-15T15:00:00Z",
+      "updatedAt": "2024-03-15T15:00:00Z",
+      "lastLoginAt": "2024-03-15T15:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": false
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "Robert Wilson",
+      "email": "robert.wilson@example.com",
+      "password": "hashedpassword404",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,4",
+      "role": "alumni",
+      "collegeId": 1,
+      "graduationYear": 2020,
+      "major": "Information Systems",
+      "skills": ["Database Design", "System Analysis", "Cloud Computing"],
+      "interests": ["Enterprise Architecture", "Digital Transformation", "IT Strategy"],
+      "bio": "IT professional focused on enterprise systems and digital transformation.",
+      "linkedin": "https://linkedin.com/in/robertwilson",
+      "github": "https://github.com/robertwilson",
+      "createdAt": "2024-03-15T16:00:00Z",
+      "updatedAt": "2024-03-15T16:00:00Z",
+      "lastLoginAt": "2024-03-15T16:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": false,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": true
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "Lisa Wang",
+      "email": "lisa.wang@example.com",
+      "password": "hashedpassword505",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,4",
+      "role": "student",
+      "collegeId": 2,
+      "graduationYear": 2024,
+      "major": "Software Engineering",
+      "skills": ["JavaScript", "React", "Node.js"],
+      "interests": ["Web Development", "Mobile Apps", "UI/UX Design"],
+      "bio": "Software engineering student specializing in full-stack development.",
+      "linkedin": "https://linkedin.com/in/lisawang",
+      "github": "https://github.com/lisawang",
+      "createdAt": "2024-03-15T17:00:00Z",
+      "updatedAt": "2024-03-15T17:00:00Z",
+      "lastLoginAt": "2024-03-15T17:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": false
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "James Brown",
+      "email": "james.brown@example.com",
+      "password": "hashedpassword606",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,5",
+      "role": "alumni",
+      "collegeId": 3,
+      "graduationYear": 2021,
+      "major": "Artificial Intelligence",
+      "skills": ["Machine Learning", "Deep Learning", "NLP"],
+      "interests": ["AI Ethics", "Computer Vision", "Robotics"],
+      "bio": "AI researcher working on cutting-edge machine learning applications.",
+      "linkedin": "https://linkedin.com/in/jamesbrown",
+      "github": "https://github.com/jamesbrown",
+      "createdAt": "2024-03-15T18:00:00Z",
+      "updatedAt": "2024-03-15T18:00:00Z",
+      "lastLoginAt": "2024-03-15T18:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": false
+        },
+        "privacy": {
+          "showProfile": true,
+          "showEmail": true
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Maria Garcia",
+      "email": "maria.garcia@example.com",
+      "password": "hashedpassword707",
+      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,5",
+      "role": "student",
+      "collegeId": 1,
+      "graduationYear": 2025,
+      "major": "Cybersecurity",
+      "skills": ["Network Security", "Penetration Testing", "Cryptography"],
+      "interests": ["Information Security", "Digital Forensics", "Cloud Security"],
+      "bio": "Cybersecurity student focused on protecting digital assets.",
+      "linkedin": "https://linkedin.com/in/mariagarcia",
+      "github": "https://github.com/mariagarcia",
+      "createdAt": "2024-03-15T19:00:00Z",
+      "updatedAt": "2024-03-15T19:00:00Z",
+      "lastLoginAt": "2024-03-15T19:00:00Z",
+      "isActive": true,
+      "emailVerified": true,
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "privacy": {
+          "showProfile": false,
+          "showEmail": false
+        }
+      }
+    }
+  ]
+}

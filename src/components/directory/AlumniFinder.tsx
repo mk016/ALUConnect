@@ -1,314 +1,427 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, Filter, Building2, GraduationCap, UserCircle2 } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from 'react-router-dom';
-import { mockColleges, mockAlumni } from '@/data/mockData';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import collegesData from '@/data/colleges.json';
+import alumniData from '@/data/alumni.json';
+
+// Filter interfaces
+interface CollegeFilters {
+  search: string;
+  location: string | null;
+  type: string | null;
+  programType: string | null;
+  rankingRange: [number, number];
+}
+
+interface AlumniFilters {
+  search: string;
+  graduationYearRange: [number, number];
+  skills: string[];
+  industry: string | null;
+  degree: string;
+}
+
+// Helper function to get unique values from array
+const getUniqueValues = (array: any[], key: string): string[] => {
+  return Array.from(new Set(array.map(item => item[key]))).filter(Boolean) as string[];
+};
+
+// Component interfaces
+interface CollegeCardProps {
+  college: typeof collegesData.colleges[0];
+  onClick: () => void;
+}
+
+const CollegeCard = ({ college, onClick }: CollegeCardProps) => (
+  <Card 
+    className="hover:shadow-lg transition-all duration-300 cursor-pointer" 
+    onClick={onClick}
+  >
+    <CardContent className="p-6">
+      <div className="flex items-center gap-4">
+        <Avatar className="h-16 w-16 border-2 border-primary/10">
+          <AvatarImage src={college.logo} alt={college.name} />
+          <AvatarFallback>{college.name[0]}</AvatarFallback>
+        </Avatar>
+        <div>
+          <h3 className="font-bold text-lg">{college.name}</h3>
+          <p className="text-sm text-muted-foreground">{college.location}</p>
+        </div>
+      </div>
+      <div className="mt-4">
+        <p className="text-sm text-muted-foreground line-clamp-2">{college.description}</p>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span className="text-xs bg-secondary/30 px-2 py-1 rounded-full">
+          {college.stats.students.toLocaleString()} Students
+        </span>
+        <span className="text-xs bg-secondary/30 px-2 py-1 rounded-full">
+          {college.stats.alumniCount.toLocaleString()} Alumni
+        </span>
+        <span className="text-xs bg-secondary/30 px-2 py-1 rounded-full">
+          {college.programs.length} Programs
+        </span>
+      </div>
+    </CardContent>
+  </Card>
+);
+
+interface AlumniCardProps {
+  alumni: typeof alumniData.alumni[0];
+}
+
+const AlumniCard = ({ alumni }: AlumniCardProps) => (
+  <Link to={`/alumni/${alumni.id}`}>
+    <Card className="hover:shadow-lg transition-all duration-300 h-full">
+      <CardContent className="p-6">
+        <div className="flex items-center gap-4 mb-4">
+          <Avatar className="h-16 w-16 border-2 border-primary/10">
+            <AvatarImage src={alumni.avatar} alt={alumni.name} />
+            <AvatarFallback>{alumni.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+          </Avatar>
+          <div>
+            <h3 className="font-bold text-lg">{alumni.name}</h3>
+            <p className="text-sm text-muted-foreground">{alumni.position} at {alumni.company}</p>
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{alumni.bio}</p>
+        <div className="flex flex-wrap gap-1">
+          {alumni.skills.slice(0, 3).map((skill, index) => (
+            <Badge key={index} variant="secondary" className="text-xs">
+              {skill}
+            </Badge>
+          ))}
+          {alumni.skills.length > 3 && (
+            <Badge variant="secondary" className="text-xs">
+              +{alumni.skills.length - 3} more
+            </Badge>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  </Link>
+);
+
+// Filter components
+interface FilterSectionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+const FilterSection = ({ title, children }: FilterSectionProps) => (
+  <div className="space-y-2">
+    <h3 className="font-semibold text-sm">{title}</h3>
+    {children}
+  </div>
+);
 
 export default function AlumniFinder() {
-  const [searchType, setSearchType] = useState("byCollege");
-  const [selectedCollege, setSelectedCollege] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [graduationYear, setGraduationYear] = useState<string | null>(null);
-  const [fieldOfStudy, setFieldOfStudy] = useState<string | null>(null);
-  const [searchResults, setSearchResults] = useState<typeof mockAlumni>([]);
-  const [hasSearched, setHasSearched] = useState(false);
+  // State for filters
+  const [collegeFilters, setCollegeFilters] = useState<CollegeFilters>({
+    search: "",
+    location: null,
+    type: null,
+    programType: null,
+    rankingRange: [1, 100]
+  });
 
-  // Get all unique graduation years from the alumni data
-  const graduationYears = [...new Set(mockAlumni.map(alum => alum.graduationYear))].sort((a, b) => b - a);
-  
-  // Get all unique fields of study from the alumni data
-  const fields = [...new Set(mockAlumni.flatMap(alum => 
-    alum.education.map(edu => edu.major)
-  ))].sort();
+  const [alumniFilters, setAlumniFilters] = useState<AlumniFilters>({
+    search: "",
+    graduationYearRange: [2010, new Date().getFullYear()],
+    skills: [],
+    industry: null,
+    degree: ""
+  });
 
-  const handleSearch = () => {
-    let results = [...mockAlumni];
+  const [selectedCollege, setSelectedCollege] = useState<number | null>(null);
+
+  // Get unique values for filters
+  const locations = getUniqueValues(collegesData.colleges, 'location');
+  const types = getUniqueValues(collegesData.colleges, 'type');
+  const programTypes = Array.from(new Set(
+    collegesData.colleges.flatMap(college => 
+      college.programs.map(program => program.type)
+    )
+  ));
+
+  const industries = Array.from(new Set(
+    alumniData.alumni.map(alumni => alumni.company)
+  ));
+
+  const skills = Array.from(new Set(
+    alumniData.alumni.flatMap(alumni => alumni.skills)
+  ));
+
+  // Filter colleges
+  const filteredColleges = collegesData.colleges.filter(college => {
+    const matchesSearch = college.name.toLowerCase().includes(collegeFilters.search.toLowerCase()) ||
+                         college.location.toLowerCase().includes(collegeFilters.search.toLowerCase());
+    const matchesLocation = !collegeFilters.location || college.location === collegeFilters.location;
+    const matchesType = !collegeFilters.type || college.type === collegeFilters.type;
+    const matchesProgramType = !collegeFilters.programType || 
+                              college.programs.some(program => program.type === collegeFilters.programType);
     
-    // Filter by college if selected
-    if (selectedCollege) {
-      results = results.filter(alum => 
-        alum.education.some(edu => edu.collegeId === parseInt(selectedCollege))
-      );
-    }
-    
-    // Filter by graduation year if selected
-    if (graduationYear && graduationYear !== "any") {
-      results = results.filter(alum => alum.graduationYear.toString() === graduationYear);
-    }
-    
-    // Filter by field of study if selected
-    if (fieldOfStudy && fieldOfStudy !== "any") {
-      results = results.filter(alum => 
-        alum.education.some(edu => edu.major === fieldOfStudy)
-      );
-    }
-    
-    // Filter by name query if provided
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      results = results.filter(alum => 
-        alum.name.toLowerCase().includes(query)
-      );
-    }
-    
-    // If search by name directly
-    if (searchType === "byName" && searchQuery.trim()) {
-      results = mockAlumni.filter(alum => 
-        alum.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-    
-    // If search by field directly
-    if (searchType === "byField" && fieldOfStudy && fieldOfStudy !== "any") {
-      results = mockAlumni.filter(alum => 
-        alum.education.some(edu => edu.major === fieldOfStudy)
-      );
-    }
-    
-    setSearchResults(results);
-    setHasSearched(true);
-  };
+    return matchesSearch && matchesLocation && matchesType && matchesProgramType;
+  });
+
+  // Filter alumni
+  const filteredAlumni = selectedCollege ? alumniData.alumni.filter(alumni => {
+    const matchesCollege = alumni.collegeId === selectedCollege;
+    const matchesSearch = alumni.name.toLowerCase().includes(alumniFilters.search.toLowerCase()) ||
+                         alumni.company.toLowerCase().includes(alumniFilters.search.toLowerCase());
+    const matchesYear = alumni.graduationYear >= alumniFilters.graduationYearRange[0] &&
+                       alumni.graduationYear <= alumniFilters.graduationYearRange[1];
+    const matchesIndustry = !alumniFilters.industry || alumni.company === alumniFilters.industry;
+    const matchesSkills = alumniFilters.skills.length === 0 ||
+                         alumniFilters.skills.every(skill => alumni.skills.includes(skill));
+    const matchesDegree = !alumniFilters.degree || alumni.degree.includes(alumniFilters.degree);
+
+    return matchesCollege && matchesSearch && matchesYear && matchesIndustry && matchesSkills && matchesDegree;
+  }) : [];
 
   return (
-    <>
-      <Card className="glass dark:glass-dark w-full mb-8">
-        <CardContent className="p-6">
-          <Tabs defaultValue="byCollege" onValueChange={setSearchType} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-6">
-              <TabsTrigger value="byCollege" className="flex items-center gap-1">
-                <Building2 className="h-4 w-4" />
-                By College
-              </TabsTrigger>
-              <TabsTrigger value="byName" className="flex items-center gap-1">
-                <UserCircle2 className="h-4 w-4" />
-                By Name
-              </TabsTrigger>
-              <TabsTrigger value="byField" className="flex items-center gap-1">
-                <GraduationCap className="h-4 w-4" />
-                By Field
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="byCollege" className="space-y-4">
-              <div>
-                <Label htmlFor="college-select">Select College/University</Label>
-                <Select onValueChange={(value) => setSelectedCollege(value)}>
-                  <SelectTrigger id="college-select" className="w-full">
-                    <SelectValue placeholder="Select a college" />
+    <div className="container mx-auto py-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Filters Sidebar */}
+        <div className="space-y-6">
+          {!selectedCollege ? (
+            // College Filters
+            <>
+              <FilterSection title="Search Colleges">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                  <Input
+                    placeholder="Search by name or location..."
+                    className="pl-10"
+                    value={collegeFilters.search}
+                    onChange={(e) => setCollegeFilters(prev => ({ ...prev, search: e.target.value }))}
+                  />
+                </div>
+              </FilterSection>
+
+              <FilterSection title="Location">
+                <Select
+                  value={collegeFilters.location || "all"}
+                  onValueChange={(value) => setCollegeFilters(prev => ({ 
+                    ...prev, 
+                    location: value === "all" ? null : value 
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select location" />
                   </SelectTrigger>
                   <SelectContent>
-                    {mockColleges.map(college => (
-                      <SelectItem key={college.id} value={college.id.toString()}>
-                        {college.name}
-                      </SelectItem>
+                    <SelectItem value="all">All Locations</SelectItem>
+                    {locations.map(location => (
+                      <SelectItem key={location} value={location}>{location}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-              </div>
-              
-              {selectedCollege && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="graduation-year">Graduation Year</Label>
-                      <Select onValueChange={setGraduationYear}>
-                        <SelectTrigger id="graduation-year">
-                          <SelectValue placeholder="Any year" />
+              </FilterSection>
+
+              <FilterSection title="Institution Type">
+                <Select
+                  value={collegeFilters.type || "all"}
+                  onValueChange={(value) => setCollegeFilters(prev => ({ 
+                    ...prev, 
+                    type: value === "all" ? null : value 
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="any">Any year</SelectItem>
-                          {graduationYears.map(year => (
-                            <SelectItem key={year} value={year.toString()}>
-                              {year}
-                            </SelectItem>
+                    <SelectItem value="all">All Types</SelectItem>
+                    {types.map(type => (
+                      <SelectItem key={type} value={type}>{type}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="field-of-study">Field of Study</Label>
-                      <Select onValueChange={setFieldOfStudy}>
-                        <SelectTrigger id="field-of-study">
-                          <SelectValue placeholder="Any field" />
+              </FilterSection>
+
+              <FilterSection title="Program Type">
+                <Select
+                  value={collegeFilters.programType || "all"}
+                  onValueChange={(value) => setCollegeFilters(prev => ({ 
+                    ...prev, 
+                    programType: value === "all" ? null : value 
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select program type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="any">Any field</SelectItem>
-                          {fields.map(field => (
-                            <SelectItem key={field} value={field}>
-                              {field}
-                            </SelectItem>
+                    <SelectItem value="all">All Programs</SelectItem>
+                    {programTypes.map(type => (
+                      <SelectItem key={type} value={type}>{type}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="alumni-name">Alumni Name (Optional)</Label>
-                    <div className="relative">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                      <Input 
-                        id="alumni-name" 
-                        placeholder="Search by name" 
-                        className="pl-10" 
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  
-                  <Button onClick={handleSearch} className="w-full sm:w-auto">
-                    <Search className="mr-2 h-4 w-4" />
-                    Find Alumni
-                  </Button>
-                </div>
-              )}
-            </TabsContent>
-            
-            <TabsContent value="byName" className="space-y-4">
-              <div>
-                <Label htmlFor="alumni-name-direct">Alumni Name</Label>
+              </FilterSection>
+            </>
+          ) : (
+            // Alumni Filters
+            <>
+              <FilterSection title="Search Alumni">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input 
-                    id="alumni-name-direct" 
-                    placeholder="Search alumni by name" 
+                    placeholder="Search by name or company..."
                     className="pl-10" 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    value={alumniFilters.search}
+                    onChange={(e) => setAlumniFilters(prev => ({ ...prev, search: e.target.value }))}
                   />
                 </div>
+              </FilterSection>
+
+              <FilterSection title="Graduation Year">
+                <div className="space-y-4">
+                  <div className="flex justify-between text-sm">
+                    <span>{alumniFilters.graduationYearRange[0]}</span>
+                    <span>{alumniFilters.graduationYearRange[1]}</span>
+                  </div>
+                  <Slider
+                    value={[
+                      alumniFilters.graduationYearRange[0],
+                      alumniFilters.graduationYearRange[1]
+                    ]}
+                    min={2010}
+                    max={new Date().getFullYear()}
+                    step={1}
+                    onValueChange={(value) => 
+                      setAlumniFilters(prev => ({ 
+                        ...prev, 
+                        graduationYearRange: [value[0], value[1]]
+                      }))
+                    }
+                  />
               </div>
-              <Button onClick={handleSearch} className="w-full sm:w-auto">
-                <Search className="mr-2 h-4 w-4" />
-                Search
-              </Button>
-            </TabsContent>
-            
-            <TabsContent value="byField" className="space-y-4">
-              <div>
-                <Label htmlFor="field-select">Field/Industry</Label>
-                <Select onValueChange={setFieldOfStudy}>
-                  <SelectTrigger id="field-select" className="w-full">
-                    <SelectValue placeholder="Select a field" />
+              </FilterSection>
+
+              <FilterSection title="Industry">
+                <Select
+                  value={alumniFilters.industry || "all"}
+                  onValueChange={(value) => setAlumniFilters(prev => ({ 
+                    ...prev, 
+                    industry: value === "all" ? null : value 
+                  }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select industry" />
                   </SelectTrigger>
                   <SelectContent>
-                    {fields.map(field => (
-                      <SelectItem key={field} value={field}>
-                        {field}
-                      </SelectItem>
+                    <SelectItem value="all">All Industries</SelectItem>
+                    {industries.map(industry => (
+                      <SelectItem key={industry} value={industry}>{industry}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+              </FilterSection>
+
+              <FilterSection title="Skills">
+                <div className="space-y-2">
+                  {skills.slice(0, 10).map(skill => (
+                    <div key={skill} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={skill}
+                        checked={alumniFilters.skills.includes(skill)}
+                        onCheckedChange={(checked) => {
+                          setAlumniFilters(prev => ({
+                            ...prev,
+                            skills: checked
+                              ? [...prev.skills, skill]
+                              : prev.skills.filter(s => s !== skill)
+                          }));
+                        }}
+                      />
+                      <Label htmlFor={skill}>{skill}</Label>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="location">Location (Optional)</Label>
-                  <Input id="location" placeholder="City, State, or Country" />
+                  ))}
                 </div>
-                <div>
-                  <Label htmlFor="graduation-year-field">Graduation Year (Optional)</Label>
-                  <Select onValueChange={setGraduationYear}>
-                    <SelectTrigger id="graduation-year-field">
-                      <SelectValue placeholder="Any year" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="any">Any year</SelectItem>
-                      {graduationYears.map(year => (
-                        <SelectItem key={year} value={year.toString()}>
-                          {year}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+              </FilterSection>
+
+              <FilterSection title="Degree">
+                <Input
+                  placeholder="Filter by degree..."
+                  value={alumniFilters.degree}
+                  onChange={(e) => setAlumniFilters(prev => ({ ...prev, degree: e.target.value }))}
+                />
+              </FilterSection>
+            </>
+          )}
+        </div>
+
+        {/* Results Section */}
+        <div className="md:col-span-3">
+          {!selectedCollege ? (
+            // College Results
+            <>
+              <div className="mb-4 flex justify-between items-center">
+                <h2 className="text-2xl font-bold">Colleges ({filteredColleges.length})</h2>
               </div>
-              <Button onClick={handleSearch} className="w-full sm:w-auto">
-                <Filter className="mr-2 h-4 w-4" />
-                Apply Filters
-              </Button>
-            </TabsContent>
-          </Tabs>
-        </CardContent>
-      </Card>
-      
-      {/* Search Results Section */}
-      {hasSearched && (
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-6">Search Results</h2>
-          {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {searchResults.map(alumni => {
-                // Find college name for this alumni
-                const college = alumni.education[0] ? 
-                  mockColleges.find(c => c.id === alumni.education[0].collegeId)?.name : 
-                  "Unknown College";
-                
-                return (
-                  <Link to={`/alumni/${alumni.id}`} key={alumni.id}>
-                    <Card className="hover:shadow-lg transition-all duration-300 overflow-hidden h-full glass">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4 mb-4">
-                          <Avatar className="h-16 w-16 border-2 border-primary/10">
-                            <AvatarImage src={alumni.avatar} alt={alumni.name} />
-                            <AvatarFallback>{alumni.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <h3 className="font-bold text-lg">{alumni.name}</h3>
-                            <p className="text-sm text-muted-foreground">{alumni.currentPosition} at {alumni.currentCompany}</p>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-center">
-                            <Building2 className="h-4 w-4 mr-2 text-muted-foreground" />
-                            <span>{college}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <GraduationCap className="h-4 w-4 mr-2 text-muted-foreground" />
-                            <span>{alumni.education[0]?.degree} in {alumni.education[0]?.major}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="mt-4 flex flex-wrap gap-1">
-                          {alumni.skills.slice(0, 3).map((skill, index) => (
-                            <span key={index} className="px-2 py-1 bg-secondary/30 rounded-full text-xs">
-                              {skill}
-                            </span>
-                          ))}
-                          {alumni.skills.length > 3 && (
-                            <span className="px-2 py-1 bg-secondary/30 rounded-full text-xs">
-                              +{alumni.skills.length - 3} more
-                            </span>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                );
-              })}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {filteredColleges.map(college => (
+                  <CollegeCard
+                    key={college.id}
+                    college={college}
+                    onClick={() => setSelectedCollege(college.id)}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            // Alumni Results
+            <>
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold">
+                    {collegesData.colleges.find(c => c.id === selectedCollege)?.name} Alumni
+                  </h2>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Found {filteredAlumni.length} alumni
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedCollege(null);
+                    setAlumniFilters({
+                      search: "",
+                      graduationYearRange: [2010, new Date().getFullYear()],
+                      skills: [],
+                      industry: null,
+                      degree: ""
+                    });
+                  }}
+                >
+                  Back to Colleges
+                </Button>
+              </div>
+              
+              {filteredAlumni.length > 0 ? (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {filteredAlumni.map(alumni => (
+                    <AlumniCard key={alumni.id} alumni={alumni} />
+                  ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-xl text-muted-foreground">No alumni found matching your search criteria.</p>
-              <p className="text-muted-foreground mt-2">Try adjusting your filters or search for a different college.</p>
+                  <p className="text-xl text-muted-foreground">No alumni found matching your filters.</p>
             </div>
+              )}
+            </>
           )}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }

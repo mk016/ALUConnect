@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -15,23 +14,45 @@ import {
   Search,
   Filter,
   GraduationCap,
-  Users
+  Users,
+  Globe,
+  MessagesSquare,
+  UserCircle,
+  BookOpen,
+  Newspaper
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '../theme/ThemeToggle';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Directory', href: '/directory' },
-  { name: 'Network', href: '/network' },
+  { 
+    name: 'Community', 
+    href: '/community',
+    subItems: [
+      { name: 'Discussion Forums', href: '/community/forums', icon: MessageSquare },
+      { name: 'Study Groups', href: '/community/study-groups', icon: Users },
+      { name: 'Mentorship', href: '/community/mentorship', icon: UserCircle },
+      { name: 'Resources', href: '/community/resources', icon: BookOpen },
+      { name: 'News & Updates', href: '/community/news', icon: Newspaper },
+    ]
+  },
+  { 
+    name: 'Network', 
+    href: '/network',
+    subItems: [
+      { name: 'Alumni Chat', href: '/network/alumni-chat', icon: MessagesSquare },
+      { name: 'Student Connect', href: '/network/student-chat', icon: Users },
+      { name: 'Global Network', href: '/network/global', icon: Globe },
+    ]
+  },
   { name: 'Jobs', href: '/jobs' },
-  { name: 'Events', href: '/events' },
-  { name: 'Donate', href: '/donate' },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
   
   useEffect(() => {
@@ -46,6 +67,14 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleMouseEnter = (name: string) => {
+    setActiveDropdown(name);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
 
   return (
     <header className={cn(
@@ -73,22 +102,44 @@ export default function Navbar() {
           </div>
           <div className="hidden lg:flex lg:gap-x-8">
             {navigation.map((item) => (
-              <Link
+              <div
                 key={item.name}
-                to={item.href}
-                className={cn(
-                  "relative transition-all duration-300 text-sm font-medium no-underline group",
-                  location.pathname === item.href ? "text-primary" : "text-foreground hover:text-primary"
-                )}
+                className="relative group"
+                onMouseEnter={() => item.subItems && handleMouseEnter(item.name)}
+                onMouseLeave={handleMouseLeave}
               >
-                {item.name}
-                <span 
+                <Link
+                  to={item.href}
                   className={cn(
-                    "absolute left-0 -bottom-1 h-0.5 bg-primary transition-all duration-300",
-                    location.pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                    "relative transition-all duration-300 text-sm font-medium no-underline",
+                    location.pathname === item.href ? "text-primary" : "text-foreground hover:text-primary"
                   )}
-                />
-              </Link>
+                >
+                  {item.name}
+                  <span 
+                    className={cn(
+                      "absolute left-0 -bottom-1 h-0.5 bg-primary transition-all duration-300",
+                      location.pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                  />
+                </Link>
+                {item.subItems && (
+                  <div className="absolute top-full left-0 mt-2 w-60 rounded-md bg-popover shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="py-1">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          to={subItem.href}
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-secondary/50 no-underline"
+                        >
+                          <subItem.icon className="h-4 w-4" />
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-3">
@@ -132,19 +183,35 @@ export default function Navbar() {
               <div className="-my-6 divide-y divide-border">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={cn(
-                        "block rounded-lg px-3 py-2 text-base font-medium transition-all duration-300 no-underline",
-                        location.pathname === item.href 
-                          ? "bg-secondary text-foreground" 
-                          : "text-foreground hover:bg-secondary"
+                    <div key={item.name}>
+                      <Link
+                        to={item.href}
+                        className={cn(
+                          "block rounded-lg px-3 py-2 text-base font-medium transition-all duration-300 no-underline",
+                          location.pathname === item.href 
+                            ? "bg-secondary text-foreground" 
+                            : "text-foreground hover:bg-secondary"
+                        )}
+                        onClick={() => !item.subItems && setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                      {item.subItems && (
+                        <div className="ml-4 mt-1 space-y-1">
+                          {item.subItems.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              to={subItem.href}
+                              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground hover:bg-secondary/50 no-underline"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              <subItem.icon className="h-4 w-4" />
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
                       )}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
+                    </div>
                   ))}
                   <Link
                     to="/directory" 

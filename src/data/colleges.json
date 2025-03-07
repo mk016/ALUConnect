@@ -1,0 +1,139 @@
+{
+  "colleges": [
+    {
+      "id": 1,
+      "name": "Stanford University",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,stanford",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,stanford", 
+      "location": "Stanford, CA",
+      "founded": 1885,
+      "type": "Private Research University",
+      "website": "https://www.stanford.edu",
+      "email": "admissions@stanford.edu",
+      "description": "Stanford University is a private research university in Stanford, California.",
+      "rankings": [
+        { "name": "QS World University Rankings", "rank": "3rd", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "4th", "year": 2023 }
+      ],
+      "programs": [
+        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Electrical Engineering", "type": "Undergraduate", "duration": "4 years" }
+      ],
+      "stats": {
+        "students": 16520,
+        "faculty": 2300,
+        "alumniCount": 220000,
+        "internationalStudents": "23%",
+        "acceptanceRate": "4.3%"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Harvard University",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,harvard",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,harvard",
+      "location": "Cambridge, MA",
+      "founded": 1636,
+      "type": "Private Research University",
+      "website": "https://www.harvard.edu",
+      "email": "admissions@harvard.edu",
+      "description": "Harvard University is a private Ivy League research university in Cambridge, Massachusetts.",
+      "rankings": [
+        { "name": "QS World University Rankings", "rank": "5th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "2nd", "year": 2023 }
+      ],
+      "programs": [
+        { "id": 1, "name": "Business Administration", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Law", "type": "Graduate", "duration": "3 years" }
+      ],
+      "stats": {
+        "students": 23000,
+        "faculty": 2400,
+        "alumniCount": 371000,
+        "internationalStudents": "24%",
+        "acceptanceRate": "4.6%"
+      }
+    },
+    {
+      "id": 3,
+      "name": "MIT",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,mit",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,mit",
+      "location": "Cambridge, MA",
+      "founded": 1861,
+      "type": "Private Research University",
+      "website": "https://www.mit.edu",
+      "email": "admissions@mit.edu",
+      "description": "The Massachusetts Institute of Technology is a private land-grant research university in Cambridge, Massachusetts.",
+      "rankings": [
+        { "name": "QS World University Rankings", "rank": "1st", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "5th", "year": 2023 }
+      ],
+      "programs": [
+        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Mechanical Engineering", "type": "Undergraduate", "duration": "4 years" }
+      ],
+      "stats": {
+        "students": 11500,
+        "faculty": 1069,
+        "alumniCount": 137000,
+        "internationalStudents": "29%",
+        "acceptanceRate": "7.3%"
+      }
+    },
+    {
+      "id": 4,
+      "name": "UC Berkeley",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,berkeley",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,berkeley",
+      "location": "Berkeley, CA",
+      "founded": 1868,
+      "type": "Public Research University",
+      "website": "https://www.berkeley.edu",
+      "email": "admissions@berkeley.edu",
+      "description": "The University of California, Berkeley is a public land-grant research university in Berkeley, California.",
+      "rankings": [
+        { "name": "QS World University Rankings", "rank": "27th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "8th", "year": 2023 }
+      ],
+      "programs": [
+        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Business Administration", "type": "Undergraduate", "duration": "4 years" }
+      ],
+      "stats": {
+        "students": 42000,
+        "faculty": 1600,
+        "alumniCount": 500000,
+        "internationalStudents": "17%",
+        "acceptanceRate": "16.3%"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Yale University",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,yale",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,yale",
+      "location": "New Haven, CT",
+      "founded": 1701,
+      "type": "Private Research University",
+      "website": "https://www.yale.edu",
+      "email": "admissions@yale.edu",
+      "description": "Yale University is a private Ivy League research university in New Haven, Connecticut.",
+      "rankings": [
+        { "name": "QS World University Rankings", "rank": "18th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "9th", "year": 2023 }
+      ],
+      "programs": [
+        { "id": 1, "name": "Liberal Arts", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Economics", "type": "Undergraduate", "duration": "4 years" }
+      ],
+      "stats": {
+        "students": 12000,
+        "faculty": 4400,
+        "alumniCount": 170000,
+        "internationalStudents": "20%",
+        "acceptanceRate": "6.1%"
+      }
+    }
+  ]
+}
