@@ -2,7 +2,17 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, UserCircle2 } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  User, 
+  Briefcase, 
+  Network, 
+  Building2, 
+  CalendarDays, 
+  Heart, 
+  MessageSquare
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -76,11 +86,11 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
-            <Button variant="outline" size="sm" className="transition-all duration-300">
-              Log in
+            <Button variant="outline" size="sm" className="transition-all duration-300" asChild>
+              <Link to="/login">Log in</Link>
             </Button>
-            <Button size="sm" className="transition-all duration-300">
-              Register
+            <Button size="sm" className="transition-all duration-300" asChild>
+              <Link to="/register">Register</Link>
             </Button>
           </div>
         </nav>
@@ -125,11 +135,11 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="py-6 space-y-3">
-                  <Button variant="outline" className="w-full justify-center">
-                    Log in
+                  <Button variant="outline" className="w-full justify-center" asChild>
+                    <Link to="/login">Log in</Link>
                   </Button>
-                  <Button className="w-full justify-center">
-                    Register
+                  <Button className="w-full justify-center" asChild>
+                    <Link to="/register">Register</Link>
                   </Button>
                 </div>
               </div>
