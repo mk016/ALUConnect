@@ -11,16 +11,16 @@ import { motion } from "framer-motion";
 // Mock alumni data
 const alumniData = {
   id: 1,
-  name: "Alex Johnson",
-  avatar: "https://source.unsplash.com/random/200x200/?portrait,man,1",
-  coverPhoto: "https://source.unsplash.com/random/1920x400/?university",
+  name: "Aarav Sharma",
+  avatar: "https://images.unsplash.com/photo-1610088441520-4352457e7095?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  coverPhoto: "https://pahaldesign.com/wp-content/uploads/2023/01/jklu_pic.jpg",
   graduationYear: 2018,
   degree: "Bachelor of Science in Computer Science",
   company: "Google",
   position: "Software Engineer",
-  location: "San Francisco, CA",
-  email: "alex.johnson@example.com",
-  linkedin: "https://linkedin.com/in/alexjohnson",
+  location: "Bengaluru, Karnataka",
+  email: "aarav.sharma@example.com",
+  linkedin: "https://linkedin.com/in/aaravsharma",
   bio: "Software engineer with 5+ years of experience in full-stack development. Passionate about building scalable web applications and mentoring junior developers.",
   skills: ["JavaScript", "React", "Node.js", "Python", "AWS", "TypeScript"],
   experiences: [
@@ -45,7 +45,7 @@ const alumniData = {
     {
       id: 1,
       degree: "Bachelor of Science in Computer Science",
-      institution: "Stanford University",
+      institution: "Indian Institute of Technology, Delhi",
       gradYear: 2018
     }
   ],
@@ -64,6 +64,7 @@ const alumniData = {
     }
   ]
 };
+
 
 export default function AlumniProfile() {
   const { id } = useParams();
