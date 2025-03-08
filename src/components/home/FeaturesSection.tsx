@@ -14,7 +14,7 @@ const features = [
     icon: Network,
   },
   {
-    name: 'Job Portal',
+    name: 'Job Portal ',
     description: 'Find opportunities, post openings, and advance your career with alumni support.',
     icon: Briefcase,
   },
