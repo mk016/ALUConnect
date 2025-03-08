@@ -34,6 +34,7 @@ import AlumniChat from "@/components/network/pages/AlumniChat";
 import StudentChat from "@/components/network/pages/StudentChat";
 import Global from "@/components/network/pages/Global";
 import Mychats from "./components/community/pages/Mychats";
+import Freelancer from "./components/Freelancer/Freelancer";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,9 @@ const App = () => (
               <Route path="/student/:id" element={<StudentProfile />} />
               <Route path="/college/:id" element={<CollegeProfile />} />
               <Route path="/jobs" element={<Jobs />} />
+              <Route path="/freelancer" element={<Freelancer />} />
+              
+
               
               {/* Community Routes */}
               <Route path="/community" element={<Community />}>

@@ -24,25 +24,44 @@ export default function Login() {
     email: '',
     password: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setError(''); // Clear error when user types
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
-    const user = usersData.users.find(u => u.email === formData.email);
-    if (!user || user.password !== formData.password) {
-      setError('Invalid email or password');
-      return;
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, userType }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+
+      // Store token and user data
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Redirect to dashboard
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
+    } finally {
+      setLoading(false);
     }
-
-    // Store user data in localStorage (in a real app, use proper session management)
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    navigate('/dashboard');
   };
 
   return (
@@ -122,8 +141,8 @@ export default function Login() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full">
-                      Sign in as {userType.charAt(0).toUpperCase() + userType.slice(1)}
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? 'Logging in...' : 'Login'}
                     </Button>
                   </div>
                 </form>

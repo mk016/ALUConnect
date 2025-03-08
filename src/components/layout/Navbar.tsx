@@ -46,6 +46,7 @@ const navigation = [
       { name: 'Global Network', href: '/network/global', icon: Globe },
     ]
   },
+  { name: 'Hire Freelancer', href: '/freelancer' },
   // { name: 'Jobs', href: '/jobs' },
 ];
 

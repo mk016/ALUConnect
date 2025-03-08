@@ -70,15 +70,67 @@ export default function Register() {
     location: '',
     collegeType: ''
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    navigate("/dashboard");
+    setError('');
+    setLoading(true);
+
+    try {
+      // Validate password match
+      if (formData.password !== formData.confirmPassword) {
+        setError('Passwords do not match');
+        setLoading(false);
+        return;
+      }
+
+      // Prepare data based on user type
+      const userData = {
+        ...formData,
+        skills: formData.skills.split(',').map(skill => skill.trim()).filter(Boolean),
+      };
+
+      // Remove confirmPassword from the data sent to server
+      const { confirmPassword, ...dataToSend } = userData;
+
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Origin': 'http://localhost:8080'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({
+          ...dataToSend,
+          userType
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.details || 'Registration failed');
+      }
+
+      // Store token and user data
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Redirect to dashboard
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -317,8 +369,9 @@ export default function Register() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full">
-                      Create Alumni Account
+                    {error && <p className="text-sm text-red-500">{error}</p>}
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? 'Creating Account...' : 'Create Alumni Account'}
                     </Button>
                   </form>
                 </TabsContent>
@@ -512,8 +565,9 @@ export default function Register() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full">
-                      Create Student Account
+                    {error && <p className="text-sm text-red-500">{error}</p>}
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? 'Creating Account...' : 'Create Student Account'}
                     </Button>
                   </form>
                 </TabsContent>
@@ -645,8 +699,9 @@ export default function Register() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full">
-                      Create College Account
+                    {error && <p className="text-sm text-red-500">{error}</p>}
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? 'Creating Account...' : 'Create College Account'}
                     </Button>
                   </form>
                 </TabsContent>
