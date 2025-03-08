@@ -4,11 +4,12 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 
 export default function HeroSection() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
-  const words = ['Connect', 'Engage', 'Inspire', 'Give Back', 'Grow'];
+  const words = ['Connect', 'Inspire', 'Give Back', 'Contribute', 'Engage'];
   
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,24 +59,25 @@ export default function HeroSection() {
             <motion.div className="inline-block py-1 px-3 bg-primary/10 rounded-full text-primary text-sm font-medium mb-2" variants={itemVariants}>
               Alumni Association Platform
             </motion.div>
-            
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"
               variants={itemVariants}
             >
               Where graduates{' '}
-              <div className="relative inline-block h-[1.15em] w-90 md:w-48 overflow-hidden">
-                <motion.span
-                  key={count}
-                  className="absolute inset-0 text-primary"
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -40, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  {words[count]}
-                </motion.span>
-              </div>
+              <span className="relative inline-block overflow-hidden h-full">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={count}
+                    className="inline-block text-primary"
+                    initial={{ y: 40, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -40, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    {words[count]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </motion.h1>
             
             <motion.p 

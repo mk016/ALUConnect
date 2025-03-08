@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Alex Johnson",
-      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,1", 
+      "avatar": "https://images.unsplash.com/photo-1610088441520-4352457e7095?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2018,
       "degree": "Bachelor of Science in Computer Science",
@@ -46,7 +46,7 @@
     {
       "id": 2,
       "name": "Sarah Chen",
-      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,1",
+      "avatar": "https://plus.unsplash.com/premium_photo-1664015982598-283bcdc9cae8?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2019,
       "degree": "Master of Science in Data Science",
@@ -89,7 +89,7 @@
     {
       "id": 3,
       "name": "Michael Rodriguez",
-      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,2",
+      "avatar": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2020,
       "degree": "Bachelor of Arts in Business Administration",
@@ -132,7 +132,7 @@
     {
       "id": 4,
       "name": "Emily Taylor",
-      "avatar": "https://source.unsplash.com/random/200x200/?portrait,woman,2",
+      "avatar": "https://images.unsplash.com/photo-1602233158242-3ba0ac4d2167?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2017,
       "degree": "Bachelor of Science in Electrical Engineering",
@@ -175,7 +175,7 @@
     {
       "id": 5,
       "name": "David Kim",
-      "avatar": "https://source.unsplash.com/random/200x200/?portrait,man,3",
+      "avatar": "https://plus.unsplash.com/premium_photo-1661400600986-b7493240cae2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2021,
       "degree": "Master of Business Administration",
