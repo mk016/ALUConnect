@@ -5,40 +5,41 @@ import {
   Users, 
   UserCircle, 
   BookOpen, 
-  Newspaper 
+  Newspaper, 
+  MessageCircle
 } from 'lucide-react';
 
 import Nabvbar from '@/components/layout/Navbar';
 const sidebarItems = [
   { 
-    name: 'Discussion Forums', 
+    name: 'Discussions', 
     href: '/community/forums', 
     icon: MessageSquare,
-    description: 'Engage in discussions with alumni and students'
   },
   { 
     name: 'Study Groups', 
     href: '/community/study-groups', 
     icon: Users,
-    description: 'Join or create study groups'
   },
   { 
     name: 'Mentorship', 
     href: '/community/mentorship', 
     icon: UserCircle,
-    description: 'Connect with mentors and mentees'
   },
   { 
     name: 'Resources', 
     href: '/community/resources', 
     icon: BookOpen,
-    description: 'Access educational resources and materials'
   },
   { 
     name: 'News & Updates', 
     href: '/community/news', 
     icon: Newspaper,
-    description: 'Stay updated with the latest community news'
+  },
+  { 
+    name: 'My Chats', 
+    href: '/community/mychats', 
+    icon: MessageCircle,
   },
 ];
 
@@ -68,9 +69,6 @@ export default function CommunityLayout() {
                   <item.icon className="h-5 w-5 mt-0.5" />
                   <div>
                     <div className="font-medium text-sm">{item.name}</div>
-                    <p className="text-xs text-muted-foreground group-hover:text-foreground/70">
-                      {item.description}
-                    </p>
                   </div>
                 </Link>
               ))}

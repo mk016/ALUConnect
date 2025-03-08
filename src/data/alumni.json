@@ -2,18 +2,18 @@
   "alumni": [
     {
       "id": 1,
-      "name": "Alex Johnson",
+      "name": "Aarav Sharma",
       "avatar": "https://images.unsplash.com/photo-1610088441520-4352457e7095?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2018,
       "degree": "Bachelor of Science in Computer Science",
       "collegeId": 1,
-      "collegeName": "Stanford University",
+      "collegeName": "Indian Institute of Technology, Delhi",
       "company": "Google",
       "position": "Software Engineer",
-      "location": "San Francisco, CA",
-      "email": "alex.johnson@example.com",
-      "linkedin": "https://linkedin.com/in/alexjohnson",
+      "location": "Bengaluru, Karnataka",
+      "email": "aarav.sharma@example.com",
+      "linkedin": "https://linkedin.com/in/aaravsharma",
       "bio": "Software engineer with 5+ years of experience in full-stack development.",
       "skills": ["JavaScript", "React", "Node.js", "Python", "AWS", "TypeScript"],
       "experiences": [
@@ -30,7 +30,7 @@
         {
           "id": 1,
           "degree": "Bachelor of Science in Computer Science",
-          "institution": "Stanford University",
+          "institution": "Indian Institute of Technology, Delhi",
           "gradYear": 2018
         }
       ],
@@ -45,18 +45,18 @@
     },
     {
       "id": 2,
-      "name": "Sarah Chen",
+      "name": "Priya Reddy",
       "avatar": "https://plus.unsplash.com/premium_photo-1664015982598-283bcdc9cae8?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2019,
       "degree": "Master of Science in Data Science",
       "collegeId": 2,
-      "collegeName": "Harvard University", 
+      "collegeName": "Indian Institute of Science, Bengaluru", 
       "company": "Microsoft",
       "position": "Data Scientist",
-      "location": "Seattle, WA",
-      "email": "sarah.chen@example.com",
-      "linkedin": "https://linkedin.com/in/sarahchen",
+      "location": "Hyderabad, Telangana",
+      "email": "priya.reddy@example.com",
+      "linkedin": "https://linkedin.com/in/priyareddy",
       "bio": "Data scientist passionate about machine learning and AI.",
       "skills": ["Python", "TensorFlow", "SQL", "Machine Learning", "Data Analysis"],
       "experiences": [
@@ -73,7 +73,7 @@
         {
           "id": 1,
           "degree": "Master of Science in Data Science",
-          "institution": "Harvard University",
+          "institution": "Indian Institute of Science, Bengaluru",
           "gradYear": 2019
         }
       ],
@@ -88,18 +88,18 @@
     },
     {
       "id": 3,
-      "name": "Michael Rodriguez",
+      "name": "Ravi Kumar",
       "avatar": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2020,
       "degree": "Bachelor of Arts in Business Administration",
       "collegeId": 1,
-      "collegeName": "Stanford University",
+      "collegeName": "Indian Institute of Management, Ahmedabad",
       "company": "Tesla",
       "position": "Product Manager",
-      "location": "Austin, TX",
-      "email": "michael.r@example.com",
-      "linkedin": "https://linkedin.com/in/michaelr",
+      "location": "Chennai, Tamil Nadu",
+      "email": "ravi.kumar@example.com",
+      "linkedin": "https://linkedin.com/in/ravikumar",
       "bio": "Product manager focused on innovative electric vehicle solutions.",
       "skills": ["Product Management", "Agile", "Market Analysis", "Strategic Planning"],
       "experiences": [
@@ -116,7 +116,7 @@
         {
           "id": 1,
           "degree": "Bachelor of Arts in Business Administration",
-          "institution": "Stanford University",
+          "institution": "Indian Institute of Management, Ahmedabad",
           "gradYear": 2020
         }
       ],
@@ -131,18 +131,18 @@
     },
     {
       "id": 4,
-      "name": "Emily Taylor",
+      "name": "Neha Patel",
       "avatar": "https://images.unsplash.com/photo-1602233158242-3ba0ac4d2167?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2017,
       "degree": "Bachelor of Science in Electrical Engineering",
       "collegeId": 2,
-      "collegeName": "Harvard University",
+      "collegeName": "Indian Institute of Technology, Bombay",
       "company": "Apple",
       "position": "Hardware Engineer",
-      "location": "Cupertino, CA",
-      "email": "emily.t@example.com",
-      "linkedin": "https://linkedin.com/in/emilyt",
+      "location": "Mumbai, Maharashtra",
+      "email": "neha.patel@example.com",
+      "linkedin": "https://linkedin.com/in/nehapatel",
       "bio": "Hardware engineer specializing in mobile device development.",
       "skills": ["Hardware Design", "Circuit Design", "FPGA", "PCB Layout"],
       "experiences": [
@@ -159,7 +159,7 @@
         {
           "id": 1,
           "degree": "Bachelor of Science in Electrical Engineering",
-          "institution": "Harvard University",
+          "institution": "Indian Institute of Technology, Bombay",
           "gradYear": 2017
         }
       ],
@@ -174,18 +174,18 @@
     },
     {
       "id": 5,
-      "name": "David Kim",
+      "name": "Anjali Gupta",
       "avatar": "https://plus.unsplash.com/premium_photo-1661400600986-b7493240cae2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "coverPhoto": "https://source.unsplash.com/random/1920x400/?university",
       "graduationYear": 2021,
       "degree": "Master of Business Administration",
       "collegeId": 1,
-      "collegeName": "Stanford University",
+      "collegeName": "Indian Institute of Management, Bangalore",
       "company": "Amazon",
       "position": "Senior Product Marketing Manager",
-      "location": "Seattle, WA",
-      "email": "david.kim@example.com",
-      "linkedin": "https://linkedin.com/in/davidkim",
+      "location": "Pune, Maharashtra",
+      "email": "anjali.gupta@example.com",
+      "linkedin": "https://linkedin.com/in/anjaligupta",
       "bio": "Marketing professional with expertise in e-commerce and digital strategy.",
       "skills": ["Digital Marketing", "Brand Strategy", "Analytics", "Content Marketing"],
       "experiences": [
@@ -202,7 +202,7 @@
         {
           "id": 1,
           "degree": "Master of Business Administration",
-          "institution": "Stanford University",
+          "institution": "Indian Institute of Management, Bangalore",
           "gradYear": 2021
         }
       ],

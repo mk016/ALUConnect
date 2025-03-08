@@ -33,6 +33,7 @@ import Network from "./pages/Network";
 import AlumniChat from "@/components/network/pages/AlumniChat";
 import StudentChat from "@/components/network/pages/StudentChat";
 import Global from "@/components/network/pages/Global";
+import Mychats from "./components/community/pages/Mychats";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
                 <Route path="mentorship" element={<Mentorship />} />
                 <Route path="resources" element={<Resources />} />
                 <Route path="news" element={<News />} />
+                <Route path="mychats" element={<Mychats />} />
               </Route>
 
               {/* Network Routes */}
@@ -75,7 +77,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
-          <ChatSystem />
+          {/* <ChatSystem /> */}
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
