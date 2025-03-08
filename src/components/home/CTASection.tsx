@@ -51,7 +51,7 @@ export default function CTASection() {
           <div className="relative mt-16 h-80 lg:mt-8">
             <img
               className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-              src="https://source.unsplash.com/random/1920x1080/?university,campus"
+              src="https://plus.unsplash.com/premium_photo-1714397509087-a2a72424983f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="App screenshot"
               width={1824}
               height={1080}

@@ -64,7 +64,7 @@ export default function HeroSection() {
               variants={itemVariants}
             >
               Where graduates{' '}
-              <div className="relative inline-block h-[1.15em] w-40 md:w-48 overflow-hidden">
+              <div className="relative inline-block h-[1.15em] w-90 md:w-48 overflow-hidden">
                 <motion.span
                   key={count}
                   className="absolute inset-0 text-primary"
@@ -124,7 +124,7 @@ export default function HeroSection() {
                 <div className="w-full max-w-xs h-full max-h-xs p-6">
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl">
                     <img 
-                      src="https://source.unsplash.com/random/600x600/?university,graduation" 
+                      src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                       alt="Alumni" 
                       className="w-full h-full object-cover"
                       loading="lazy"

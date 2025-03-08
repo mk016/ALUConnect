@@ -8,25 +8,25 @@ const testimonials = [
     content: "The alumni platform has been invaluable for my career growth. Through networking events, I found my current position and have been able to give back by mentoring recent graduates.",
     author: "Sarah Johnson",
     position: "Marketing Director, Class of 2010",
-    image: "https://source.unsplash.com/random/200x200/?portrait,woman,professional"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     content: "After graduation, I was looking for ways to stay connected with my university. This platform has allowed me to maintain those bonds while also expanding my professional network significantly.",
     author: "Michael Chen",
     position: "Software Engineer, Class of 2015",
-    image: "https://source.unsplash.com/random/200x200/?portrait,man,asian"
+    image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     content: "The job portal exclusively for alumni has been a game-changer. I've hired three alumni from my alma mater and they've been exceptional additions to our team.",
     author: "Priya Patel",
     position: "HR Manager, Class of 2008",
-    image: "https://source.unsplash.com/random/200x200/?portrait,woman,indian"
+    image: "https://plus.unsplash.com/premium_photo-1683140715644-e4bf38ad5e65?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     content: "The mentorship program connected me with industry leaders who provided guidance during a critical career transition. I'm now paying it forward by mentoring recent graduates myself.",
     author: "James Wilson",
     position: "Financial Analyst, Class of 2012",
-    image: "https://source.unsplash.com/random/200x200/?portrait,man"
+    image: "https://images.unsplash.com/photo-1581382575275-97901c2635b7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ];
 
