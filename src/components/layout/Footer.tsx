@@ -9,8 +9,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-2xl tracking-tight text-primary">Alumni</span>
-              <span className="text-sm py-0.5 px-2 bg-white rounded-full">Connect</span>
+              <span className="font-bold text-2xl tracking-tight text-primary">ALUconnect</span>
+              <span className="text-sm py-0.5 px-2 bg-white rounded-full">Beta</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
               Connecting alumni worldwide, fostering relationships, and creating opportunities for growth and giving back.
@@ -38,7 +38,8 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
-              {['Home', 'Directory', 'Network', 'Jobs', 'Events', 'Donate'].map((item) => (
+              {/* {['Home', 'Directory', 'Network', 'Jobs', 'Events', 'Donate'].map((item) => ( */}
+              {['Home', 'Directory', 'Network'].map((item) => (
                 <li key={item}>
                   <Link to={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`} className="text-muted-foreground hover:text-primary transition-colors no-underline">
                     {item}
@@ -81,7 +82,7 @@ export default function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>© 2023 Alumni Connect. All rights reserved.</p>
+          <p>© 2025 ALUonnect. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>

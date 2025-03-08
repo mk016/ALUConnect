@@ -46,7 +46,7 @@ const navigation = [
       { name: 'Global Network', href: '/network/global', icon: Globe },
     ]
   },
-  { name: 'Jobs', href: '/jobs' },
+  // { name: 'Jobs', href: '/jobs' },
 ];
 
 export default function Navbar() {
@@ -85,8 +85,8 @@ export default function Navbar() {
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
             <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2 no-underline">
-              <span className="font-bold text-2xl tracking-tight text-primary animate-float">Alumni</span>
-              <span className="text-sm py-0.5 px-2 bg-secondary rounded-full">Connect</span>
+              <span className="font-bold text-2xl tracking-tight text-primary animate-float">ALUconnect</span>
+              <span className="text-sm py-0.5 px-2 bg-secondary rounded-full">Beta</span>
             </Link>
           </div>
           <div className="flex lg:hidden items-center gap-4">

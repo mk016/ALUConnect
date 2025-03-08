@@ -9,6 +9,7 @@ import {
   MessageCircle
 } from 'lucide-react';
 
+import Nabvbar from '@/components/layout/Navbar';
 const sidebarItems = [
   { 
     name: 'Discussions', 
@@ -47,7 +48,8 @@ export default function CommunityLayout() {
 
   return (
     <div className="container mx-auto py-8">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <Nabvbar />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16">
         {/* Sidebar */}
         <div className="space-y-4">
           <div className="sticky top-24">
