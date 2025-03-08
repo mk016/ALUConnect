@@ -1,9 +1,8 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "./components/theme/ThemeProvider";
 
@@ -20,6 +19,14 @@ import Jobs from "./pages/Jobs";
 
 // Components
 import ChatSystem from "./components/chat/ChatSystem";
+
+// Community Pages
+import Community from "./pages/Community";
+import Forums from "@/components/community/pages/Forums";
+import StudyGroups from "@/components/community/pages/StudyGroups";
+import Mentorship from "@/components/community/pages/Mentorship";
+import Resources from "@/components/community/pages/Resources";
+import News from "@/components/community/pages/News";
 
 const queryClient = new QueryClient();
 
@@ -40,7 +47,17 @@ const App = () => (
               <Route path="/student/:id" element={<StudentProfile />} />
               <Route path="/college/:id" element={<CollegeProfile />} />
               <Route path="/jobs" element={<Jobs />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              
+              {/* Community Routes */}
+              <Route path="/community" element={<Community />}>
+                <Route index element={<Navigate to="forums" />} />
+                <Route path="forums" element={<Forums />} />
+                <Route path="study-groups" element={<StudyGroups />} />
+                <Route path="mentorship" element={<Mentorship />} />
+                <Route path="resources" element={<Resources />} />
+                <Route path="news" element={<News />} />
+              </Route>
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
