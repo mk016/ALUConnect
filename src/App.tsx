@@ -28,6 +28,12 @@ import Mentorship from "@/components/community/pages/Mentorship";
 import Resources from "@/components/community/pages/Resources";
 import News from "@/components/community/pages/News";
 
+// Network Pages
+import Network from "./pages/Network";
+import AlumniChat from "@/components/network/pages/AlumniChat";
+import StudentChat from "@/components/network/pages/StudentChat";
+import Global from "@/components/network/pages/Global";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -56,6 +62,14 @@ const App = () => (
                 <Route path="mentorship" element={<Mentorship />} />
                 <Route path="resources" element={<Resources />} />
                 <Route path="news" element={<News />} />
+              </Route>
+
+              {/* Network Routes */}
+              <Route path="/network" element={<Network />}>
+                <Route index element={<Navigate to="alumni-chat" />} />
+                <Route path="alumni-chat" element={<AlumniChat />} />
+                <Route path="student-chat" element={<StudentChat />} />
+                <Route path="global" element={<Global />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />
