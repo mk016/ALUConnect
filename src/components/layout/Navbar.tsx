@@ -146,7 +146,7 @@ export default function Navbar() {
             <Button variant="outline" size="sm" className="gap-1.5" asChild>
               <Link to="/directory">
                 <Search className="h-4 w-4" />
-                <span>Find Alumni</span>
+                <span>Find Alumni/colleges</span>
               </Link>
             </Button>
             <ThemeToggle />

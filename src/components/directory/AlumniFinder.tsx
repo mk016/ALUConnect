@@ -42,6 +42,8 @@ interface CollegeCardProps {
 }
 
 const CollegeCard = ({ college, onClick }: CollegeCardProps) => (
+  <>
+  
   <Card 
     className="hover:shadow-lg transition-all duration-300 cursor-pointer" 
     onClick={onClick}
@@ -73,6 +75,7 @@ const CollegeCard = ({ college, onClick }: CollegeCardProps) => (
       </div>
     </CardContent>
   </Card>
+  </>
 );
 
 interface AlumniCardProps {
@@ -381,6 +384,8 @@ export default function AlumniFinder() {
           ) : (
             // Alumni Results
             <>
+           <img src={collegesData.colleges.find(c => c.id === selectedCollege)?.coverPhoto} className='h-100 w-full rounded-md ' alt="College Cover" />
+
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold">
