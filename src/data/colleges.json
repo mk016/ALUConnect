@@ -2,137 +2,136 @@
   "colleges": [
     {
       "id": 1,
-      "name": "Stanford University",
-      "logo": "https://source.unsplash.com/random/200x200/?university,logo,stanford",
-      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,stanford", 
-      "location": "Stanford, CA",
-      "founded": 1885,
-      "type": "Private Research University",
-      "website": "https://www.stanford.edu",
-      "email": "admissions@stanford.edu",
-      "description": "Stanford University is a private research university in Stanford, California.",
+      "name": "JK Lakshmipat University, Jaipur",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,jklu",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,jklu",
+      "location": "Jaipur, Rajasthan",
+      "founded": 2011,
+      "type": "Private University",
+      "website": "https://www.jklu.edu.in",
+      "email": "admissions@jklu.edu.in",
+      "description": "JK Lakshmipat University, Jaipur is a private university in Jaipur, Rajasthan.",
       "rankings": [
-        { "name": "QS World University Rankings", "rank": "3rd", "year": 2023 },
-        { "name": "Times Higher Education", "rank": "4th", "year": 2023 }
+        { "name": "National Institutional Ranking Framework (NIRF)", "rank": "51st", "year": 2023 }
       ],
       "programs": [
-        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
-        { "id": 2, "name": "Electrical Engineering", "type": "Undergraduate", "duration": "4 years" }
+        { "id": 1, "name": "Computer Science Engineering", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Mechanical Engineering", "type": "Undergraduate", "duration": "4 years" }
       ],
       "stats": {
-        "students": 16520,
-        "faculty": 2300,
-        "alumniCount": 220000,
-        "internationalStudents": "23%",
-        "acceptanceRate": "4.3%"
+        "students": 5000,
+        "faculty": 250,
+        "alumniCount": 5000,
+        "internationalStudents": "5%",
+        "acceptanceRate": "10%"
       }
     },
     {
       "id": 2,
-      "name": "Harvard University",
-      "logo": "https://source.unsplash.com/random/200x200/?university,logo,harvard",
-      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,harvard",
-      "location": "Cambridge, MA",
-      "founded": 1636,
-      "type": "Private Research University",
-      "website": "https://www.harvard.edu",
-      "email": "admissions@harvard.edu",
-      "description": "Harvard University is a private Ivy League research university in Cambridge, Massachusetts.",
+      "name": "Indian Institute of Technology, Bombay",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,iitbombay",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,iitbombay",
+      "location": "Mumbai, Maharashtra",
+      "founded": 1958,
+      "type": "Public Institute of National Importance",
+      "website": "https://www.iitb.ac.in",
+      "email": "admissions@iitb.ac.in",
+      "description": "Indian Institute of Technology, Bombay is one of the premier IITs in India, known for its technical education and research.",
       "rankings": [
-        { "name": "QS World University Rankings", "rank": "5th", "year": 2023 },
-        { "name": "Times Higher Education", "rank": "2nd", "year": 2023 }
+        { "name": "QS World University Rankings", "rank": "177th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "202nd", "year": 2023 }
       ],
       "programs": [
-        { "id": 1, "name": "Business Administration", "type": "Undergraduate", "duration": "4 years" },
-        { "id": 2, "name": "Law", "type": "Graduate", "duration": "3 years" }
+        { "id": 1, "name": "Computer Science Engineering", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Electrical Engineering", "type": "Undergraduate", "duration": "4 years" }
       ],
       "stats": {
-        "students": 23000,
-        "faculty": 2400,
-        "alumniCount": 371000,
-        "internationalStudents": "24%",
-        "acceptanceRate": "4.6%"
+        "students": 11000,
+        "faculty": 800,
+        "alumniCount": 100000,
+        "internationalStudents": "15%",
+        "acceptanceRate": "2.5%"
       }
     },
     {
       "id": 3,
-      "name": "MIT",
-      "logo": "https://source.unsplash.com/random/200x200/?university,logo,mit",
-      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,mit",
-      "location": "Cambridge, MA",
-      "founded": 1861,
-      "type": "Private Research University",
-      "website": "https://www.mit.edu",
-      "email": "admissions@mit.edu",
-      "description": "The Massachusetts Institute of Technology is a private land-grant research university in Cambridge, Massachusetts.",
+      "name": "Indian Institute of Technology, Delhi",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,iitdelhi",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,iitdelhi",
+      "location": "New Delhi, Delhi",
+      "founded": 1961,
+      "type": "Public Institute of National Importance",
+      "website": "https://www.iitd.ac.in",
+      "email": "admissions@iitd.ac.in",
+      "description": "Indian Institute of Technology, Delhi is one of India's most prestigious technical institutes.",
       "rankings": [
-        { "name": "QS World University Rankings", "rank": "1st", "year": 2023 },
-        { "name": "Times Higher Education", "rank": "5th", "year": 2023 }
+        { "name": "QS World University Rankings", "rank": "174th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "183rd", "year": 2023 }
       ],
       "programs": [
-        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
-        { "id": 2, "name": "Mechanical Engineering", "type": "Undergraduate", "duration": "4 years" }
+        { "id": 1, "name": "Mechanical Engineering", "type": "Undergraduate", "duration": "4 years" },
+        { "id": 2, "name": "Civil Engineering", "type": "Undergraduate", "duration": "4 years" }
       ],
       "stats": {
-        "students": 11500,
-        "faculty": 1069,
-        "alumniCount": 137000,
-        "internationalStudents": "29%",
-        "acceptanceRate": "7.3%"
+        "students": 10000,
+        "faculty": 700,
+        "alumniCount": 80000,
+        "internationalStudents": "12%",
+        "acceptanceRate": "3.2%"
       }
     },
     {
       "id": 4,
-      "name": "UC Berkeley",
-      "logo": "https://source.unsplash.com/random/200x200/?university,logo,berkeley",
-      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,berkeley",
-      "location": "Berkeley, CA",
-      "founded": 1868,
-      "type": "Public Research University",
-      "website": "https://www.berkeley.edu",
-      "email": "admissions@berkeley.edu",
-      "description": "The University of California, Berkeley is a public land-grant research university in Berkeley, California.",
+      "name": "University of Delhi",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,delhi",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,delhi",
+      "location": "New Delhi, Delhi",
+      "founded": 1922,
+      "type": "Public University",
+      "website": "https://www.du.ac.in",
+      "email": "admissions@du.ac.in",
+      "description": "University of Delhi is one of India's largest and most prestigious public universities.",
       "rankings": [
-        { "name": "QS World University Rankings", "rank": "27th", "year": 2023 },
-        { "name": "Times Higher Education", "rank": "8th", "year": 2023 }
+        { "name": "QS World University Rankings", "rank": "474th", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "601-800", "year": 2023 }
       ],
       "programs": [
-        { "id": 1, "name": "Computer Science", "type": "Undergraduate", "duration": "4 years" },
-        { "id": 2, "name": "Business Administration", "type": "Undergraduate", "duration": "4 years" }
+        { "id": 1, "name": "Economics", "type": "Undergraduate", "duration": "3 years" },
+        { "id": 2, "name": "History", "type": "Undergraduate", "duration": "3 years" }
       ],
       "stats": {
-        "students": 42000,
-        "faculty": 1600,
-        "alumniCount": 500000,
-        "internationalStudents": "17%",
-        "acceptanceRate": "16.3%"
+        "students": 35000,
+        "faculty": 1200,
+        "alumniCount": 250000,
+        "internationalStudents": "5%",
+        "acceptanceRate": "20%"
       }
     },
     {
       "id": 5,
-      "name": "Yale University",
-      "logo": "https://source.unsplash.com/random/200x200/?university,logo,yale",
-      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,yale",
-      "location": "New Haven, CT",
-      "founded": 1701,
-      "type": "Private Research University",
-      "website": "https://www.yale.edu",
-      "email": "admissions@yale.edu",
-      "description": "Yale University is a private Ivy League research university in New Haven, Connecticut.",
+      "name": "Banaras Hindu University",
+      "logo": "https://source.unsplash.com/random/200x200/?university,logo,bhu",
+      "coverPhoto": "https://source.unsplash.com/random/1920x400/?university,campus,bhu",
+      "location": "Varanasi, Uttar Pradesh",
+      "founded": 1916,
+      "type": "Public University",
+      "website": "https://www.bhu.ac.in",
+      "email": "admissions@bhu.ac.in",
+      "description": "Banaras Hindu University is one of the oldest and largest residential universities in India.",
       "rankings": [
-        { "name": "QS World University Rankings", "rank": "18th", "year": 2023 },
-        { "name": "Times Higher Education", "rank": "9th", "year": 2023 }
+        { "name": "QS World University Rankings", "rank": "801-1000", "year": 2023 },
+        { "name": "Times Higher Education", "rank": "801-1000", "year": 2023 }
       ],
       "programs": [
-        { "id": 1, "name": "Liberal Arts", "type": "Undergraduate", "duration": "4 years" },
-        { "id": 2, "name": "Economics", "type": "Undergraduate", "duration": "4 years" }
+        { "id": 1, "name": "Political Science", "type": "Undergraduate", "duration": "3 years" },
+        { "id": 2, "name": "Physics", "type": "Undergraduate", "duration": "3 years" }
       ],
       "stats": {
-        "students": 12000,
-        "faculty": 4400,
-        "alumniCount": 170000,
-        "internationalStudents": "20%",
-        "acceptanceRate": "6.1%"
+        "students": 25000,
+        "faculty": 1600,
+        "alumniCount": 300000,
+        "internationalStudents": "7%",
+        "acceptanceRate": "18%"
       }
     }
   ]
