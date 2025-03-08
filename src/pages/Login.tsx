@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -7,17 +6,43 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock, AtSign, UserCircle2, GraduationCap, Building2 } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Mail, Lock, UserCircle2, GraduationCap, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
+import usersData from '@/data/users.json';
+
+interface FormData {
+  email: string;
+  password: string;
+}
 
 export default function Login() {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("alumni");
-  
+  const [error, setError] = useState("");
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (field: keyof FormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    setError(''); // Clear error when user types
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For demonstration purposes only - in real app would verify credentials
-    navigate("/dashboard");
+    setError('');
+
+    const user = usersData.users.find(u => u.email === formData.email);
+    if (!user || user.password !== formData.password) {
+      setError('Invalid email or password');
+      return;
+    }
+
+    // Store user data in localStorage (in a real app, use proper session management)
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    navigate('/dashboard');
   };
 
   return (
@@ -54,13 +79,28 @@ export default function Login() {
                 
                 <form onSubmit={handleSubmit}>
                   <div className="space-y-4">
+                    {error && (
+                      <Alert variant="destructive">
+                        <AlertDescription>{error}</AlertDescription>
+                      </Alert>
+                    )}
+
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                        <Input id="email" type="email" placeholder="your.email@example.com" className="pl-10" required />
+                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder={`${userType === 'college' ? 'admin@college.edu' : 'your.email@example.com'}`}
+                          className="pl-10"
+                          value={formData.email}
+                          onChange={(e) => handleChange('email', e.target.value)}
+                          required
+                        />
                       </div>
                     </div>
+
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label htmlFor="password">Password</Label>
@@ -69,12 +109,21 @@ export default function Login() {
                         </Link>
                       </div>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                        <Input id="password" type="password" className="pl-10" required />
+                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                          id="password"
+                          type="password"
+                          placeholder="Enter your password"
+                          className="pl-10"
+                          value={formData.password}
+                          onChange={(e) => handleChange('password', e.target.value)}
+                          required
+                        />
                       </div>
                     </div>
+
                     <Button type="submit" className="w-full">
-                      Sign in
+                      Sign in as {userType.charAt(0).toUpperCase() + userType.slice(1)}
                     </Button>
                   </div>
                 </form>
