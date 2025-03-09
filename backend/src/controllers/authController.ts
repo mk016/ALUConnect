@@ -6,7 +6,7 @@ import { Student } from '../models/Student';
 import { Alumni } from '../models/Alumni';
 import { College } from '../models/College';
 import { Freelancer } from '../models/Freelancer';
-import bcrypt from 'bcrypt';
+
 
 // Generate JWT Token
 const generateToken = (id: string): string => {
