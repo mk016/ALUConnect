@@ -2,6 +2,8 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
 import authRoutes from './routes/authRoutes';
+import freelancerRoutes from './routes/freelancerRoutes';
+import opportunityRoutes from './routes/opportunityRoutes';
 
 // Load env vars
 dotenv.config();
@@ -46,6 +48,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/freelancer', freelancerRoutes);
+app.use('/api/opportunities', opportunityRoutes);
 
 // Test route
 app.get('/test', (req: Request, res: Response) => {

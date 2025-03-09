@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   Menu, 
@@ -19,10 +19,22 @@ import {
   MessagesSquare,
   UserCircle,
   BookOpen,
-  Newspaper
+  Newspaper,
+  Settings,
+  LogOut,
+  Bell
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '../theme/ThemeToggle';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -54,7 +66,9 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
   const location = useLocation();
+  const navigate = useNavigate();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -69,12 +83,26 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
   const handleMouseEnter = (name: string) => {
     setActiveDropdown(name);
   };
 
   const handleMouseLeave = () => {
     setActiveDropdown(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/login');
   };
 
   return (
@@ -151,12 +179,58 @@ export default function Navbar() {
               </Link>
             </Button>
             <ThemeToggle />
-            <Button variant="outline" size="sm" className="transition-all duration-300" asChild>
-              <Link to="/login">Log in</Link>
-            </Button>
-            <Button size="sm" className="transition-all duration-300" asChild>
-              <Link to="/register">Register</Link>
-            </Button>
+            {user ? (
+              <>
+                <Button variant="ghost" size="icon">
+                  <Bell className="h-5 w-5" />
+                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.profilePicture} alt={user.name} />
+                        <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                    <DropdownMenuLabel className="font-normal">
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">{user.name}</p>
+                        <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link to={`/${user.userType}/dashboard`} className="cursor-pointer">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/settings" className="cursor-pointer">
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>Settings</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <>
+                <Button variant="outline" size="sm" className="transition-all duration-300" asChild>
+                  <Link to="/login">Log in</Link>
+                </Button>
+                <Button size="sm" className="transition-all duration-300" asChild>
+                  <Link to="/register">Register</Link>
+                </Button>
+              </>
+            )}
           </div>
         </nav>
         
@@ -168,8 +242,8 @@ export default function Navbar() {
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-2 no-underline" onClick={() => setMobileMenuOpen(false)}>
-                <span className="font-bold text-2xl tracking-tight text-primary">Alumni</span>
-                <span className="text-sm py-0.5 px-2 bg-secondary rounded-full">Connect</span>
+                <span className="font-bold text-2xl tracking-tight text-primary">ALUconnect</span>
+                <span className="text-sm py-0.5 px-2 bg-secondary rounded-full">Beta</span>
               </Link>
               <button
                 type="button"
@@ -182,6 +256,31 @@ export default function Navbar() {
             </div>
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-border">
+                {user && (
+                  <div className="py-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage src={user.profilePicture} alt={user.name} />
+                        <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium">{user.name}</p>
+                        <p className="text-xs text-muted-foreground">{user.email}</p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start mb-2"
+                      asChild
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Link to={`/${user.userType}/dashboard`}>
+                        <User className="mr-2 h-4 w-4" />
+                        Dashboard
+                      </Link>
+                    </Button>
+                  </div>
+                )}
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
                     <div key={item.name}>
@@ -224,12 +323,27 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className="py-6 space-y-3">
-                  <Button variant="outline" className="w-full justify-center" asChild>
-                    <Link to="/login">Log in</Link>
-                  </Button>
-                  <Button className="w-full justify-center" asChild>
-                    <Link to="/register">Register</Link>
-                  </Button>
+                  {user ? (
+                    <Button 
+                      variant="destructive" 
+                      className="w-full justify-center"
+                      onClick={() => {
+                        handleLogout();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      Log out
+                    </Button>
+                  ) : (
+                    <>
+                      <Button variant="outline" className="w-full justify-center" asChild>
+                        <Link to="/login">Log in</Link>
+                      </Button>
+                      <Button className="w-full justify-center" asChild>
+                        <Link to="/register">Register</Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

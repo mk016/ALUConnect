@@ -6,6 +6,7 @@ import { Student } from '../models/Student';
 import { Alumni } from '../models/Alumni';
 import { College } from '../models/College';
 import { Freelancer } from '../models/Freelancer';
+import bcrypt from 'bcrypt';
 
 // Generate JWT Token
 const generateToken = (id: string): string => {
@@ -149,5 +150,36 @@ export const login = async (req: Request, res: Response) => {
       success: false,
       message: error instanceof Error ? error.message : 'Login failed'
     });
+  }
+};
+
+export const updateProfile = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.id;
+    const updates = req.body;
+
+    // Remove sensitive fields that shouldn't be updated directly
+    delete updates.password;
+    delete updates._id;
+
+    // If updating skills and it's a string, convert to array
+    if (typeof updates.skills === 'string') {
+      updates.skills = updates.skills.split(',').map((skill: string) => skill.trim());
+    }
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $set: updates },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Profile update error:', error);
+    res.status(500).json({ message: 'Error updating profile' });
   }
 }; 
